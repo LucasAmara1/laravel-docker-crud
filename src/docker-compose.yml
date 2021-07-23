@@ -1,0 +1,65 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      args:
+        user: lucas
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: laravel-docker-crud
+    container_name: laravel-docker-crud-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - laravel
+
+  db:
+    image: mysql:8
+    container_name: laravel-docker-crud-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    # ports:
+    #   - "3306:3306"
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - laravel
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: laravel-docker-crud-phpmyadmin
+    environment:
+      # PMA_HOST: db
+      # PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    networks:
+      - laravel
+
+  nginx:
+    image: nginx:alpine
+    container_name: laravel-docker-crud-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d
+    networks:
+      - laravel
+
+networks:
+  laravel:
+    driver: bridge
