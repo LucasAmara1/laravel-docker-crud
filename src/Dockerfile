@@ -28,6 +28,14 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
+# Install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh && bash nodesource_setup.sh && apt-get -y --force-yes install nodejs
+
+# Upgrading Node
+RUN npm cache clean -f
+RUN npm install -g n
+RUN n stable
+
 # Set working directory
 WORKDIR /var/www
 
