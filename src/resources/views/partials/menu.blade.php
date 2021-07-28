@@ -14,7 +14,7 @@
         </li>
         <li class="c-sidebar-nav-title">Gestão</li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link " href="/">
+            <a class="c-sidebar-nav-link " href="/produtos">
                 <i class="fas fa-capsules c-sidebar-nav-icon"></i>
                 Produtos
             </a>

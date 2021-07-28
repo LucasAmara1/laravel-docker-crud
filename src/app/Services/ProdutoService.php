@@ -14,7 +14,6 @@ class ProdutoService
             'nome',
             'preco',
             'descricao',
-            'referencia',
         ))
             ->where('status', '!=', 0)
             ->orderBy('nome', 'asc')
