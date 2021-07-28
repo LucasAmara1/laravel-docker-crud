@@ -1,36 +1,31 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+@include('layouts.head')
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+<body class="c-app">
+    @include('partials.menu')
+    <div class="c-wrapper">
+        <header class="c-header c-header-light c-header-fixed">
+            <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
+                <img width="20px" src="{{asset('icons/bars-solid.svg')}}" alt="">
+            </button>
+            {{-- <ul class="c-header-nav d-md-down-none" style="font-weight: 600;">
+                <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="{{route('dashboard')}}">Inicio</a></li>
+                <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="{{route('dashboard')}}">Produtos</a></li>
+            </ul> --}}
+        </header>
+        <div class="c-body">
+            <main class="c-main">
+                <div class="container-fluid">
+                    @yield('content')
                 </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
             </main>
         </div>
-    </body>
+    </div>
+
+    <script type="text/javascript" defer src="{{ asset('js/all.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/coreui.bundle.min.js') }}" defer></script>
+</body>
+
 </html>

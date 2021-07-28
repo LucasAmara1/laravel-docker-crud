@@ -1,59 +1,95 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@include('layouts.head')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+<body class="c-app flex-row align-items-center" cz-shortcut-listen="true">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div style="display: flex; justify-content: center;">
+                    <a href="/">
+                        <img src="{{asset('icons/group.svg')}}">
+                    </a>
+                </div>
+                <div class="card-group" style="margin-top: 35px;">
+                    <div class="card p-4 shadow-sm p-3 mb-5 bg-white rounded">
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('register') }}">
+                                @csrf
+                                <h1 style="color:#254b75;">Cadastro</h1>
+                                <p class="text-muted">Informe os dados para cadastro</p>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <img src="{{asset('icons/user1.svg')}}">
+                                        </span>
+                                    </div>
+                                    <input id="nome" type="text" name="nome" class="form-control" type="text" placeholder="Nome">
+                                    <div>
+                                        @error('nome')
+                                        <small id="nome_aviso" class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <img src="{{asset('icons/email.svg')}}">
+                                        </span>
+                                    </div>
+                                    <input id="email" type="text" name="email" class="form-control" type="text" placeholder="Email">
+                                    <div>
+                                        @error('email')
+                                        <small id="email_aviso" class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <img src="{{asset('icons/key.svg')}}">
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="password" name="password" type="password" placeholder="Senha">
+                                    <div>
+                                        @error('password')
+                                        <small id="senha_aviso" class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <img src="{{asset('icons/key.svg')}}">
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirmar Senha">
+                                    <div>
+                                        @error('password_confirmation')
+                                        <small id="comfirmar_senha_aviso" class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-outline-light px-4" style="color:white; background-color: #487cb9; border-color: #487cb9;">Cadastrar</button>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <a class="btn btn-link px-0" href="{{ route('login') }}"> Já possui cadastro?</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+</body>

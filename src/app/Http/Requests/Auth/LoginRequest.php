@@ -34,6 +34,20 @@ class LoginRequest extends FormRequest
         ];
     }
 
+     /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'email.required' => 'O campo email é obrigatório.',
+            'email.email' => 'Digite um email válido.',
+            'password.required' => 'O campo senha é obrigatório.',
+        ];
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *
@@ -49,7 +63,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
+                'email' => __('Email ou senha incorretos.'),
             ]);
         }
 

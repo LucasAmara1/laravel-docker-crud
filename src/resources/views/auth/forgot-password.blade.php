@@ -1,36 +1,45 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@include('layouts.head')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+<body class="c-app flex-row align-items-center" cz-shortcut-listen="true">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div style="display: flex; justify-content: center;">
+                    <a href="/">
+                        <img src="{{asset('icons/group.svg')}}">
+                    </a>
+                </div>
+                <div class="card-group" style="margin-top: 35px;">
+                    <div class="card p-4 shadow-sm p-3 mb-5 bg-white rounded">
+                        <div class="card-header" style="background-color: white; border: none;">
+                            <h2 style="color:#254b75;">Esqueci minha senha</h2>
+                            <p class="text-muted" style="margin-top: 1rem; font-size: 16px;">Enviaremos um link de recuperação por
+                                email para você redefinir sua senha.</p>
+                        </div>
+                        <div class="card-body" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+                            <form method="POST" action="{{ route('password.email') }}">
+                                @csrf
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <img src="{{asset('icons/email.svg')}}">
+                                        </span>
+                                    </div>
+                                    <input id="email" type="text" name="email" class="form-control" type="text"
+                                        placeholder="Email">
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-12 text-right">
+                                        <button class="btn px-4" type="submit"
+                                            style="color:white; background-color: #487cb9; border-color: #487cb9;">Redefinir
+                                            Senha</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+</body>
