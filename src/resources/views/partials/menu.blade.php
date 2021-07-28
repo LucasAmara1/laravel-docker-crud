@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="{{ asset('css/switchery.css') }}">
-<script type="text/javascript" src="{{ asset('js/switchery.js') }}"></script>
-
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-md-down-none">
         <img src="{{asset('icons/group.svg')}}" width="75px" alt="Logo">

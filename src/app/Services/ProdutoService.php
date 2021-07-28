@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Produto;
-use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class ProdutoService
 {
@@ -34,6 +34,16 @@ class ProdutoService
 
     public function store($request)
     {
+        $imageName = '';
+
+        if ($request->imagem) {
+            $imageName = time() . '.' . $request->imagem->extension();
+            $img = Image::make($request->imagem->path());
+            $img->resize(200, 200, function ($const) {
+                $const->aspectRatio();
+            })->save(public_path('images/produtos/')  . $imageName);
+        }
+
         $produto = Produto::create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,

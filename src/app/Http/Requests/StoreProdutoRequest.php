@@ -28,7 +28,8 @@ class StoreProdutoRequest extends FormRequest
             'preco' => 'required',
             'fabricante' => 'required',
             'descricao' => 'required',
-            'tarja' => 'tarja',
+            'tarja' => 'required',
+            'imagem' => 'image|mimes:png|max:2048'
         ];
     }
 
@@ -45,6 +46,9 @@ class StoreProdutoRequest extends FormRequest
             'fabricante.required' => 'O campo fabricante é obrigatório.',
             'tarja.required' => 'O campo tarja é obrigatório.',
             'descricao.required' => 'O campo descrição é obrigatório.',
+            'imagem.image' => 'A imagem deve ser uma imagem.',
+            'imagem.mimes' => 'A imagem deve ser um arquivo do tipo: png.',
+            'imagem.max' => 'A imagem não deve ter mais de 2048 KB.'
         ];
     }
 }
