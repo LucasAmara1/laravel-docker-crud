@@ -23,7 +23,7 @@ class ProdutoFactory extends Factory
     {
         return [
             'nome' => $this->faker->words(1, true),
-            'descricao' => $this->faker->realText(100),
+            'descricao' => $this->faker->realText(80),
             'fabricante' => $this->faker->name(),
             'tarja' => $this->faker->words(1, true),
             'preco' => $this->faker->numberBetween(500, 3000),        
