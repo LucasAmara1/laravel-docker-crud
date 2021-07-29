@@ -21,6 +21,7 @@ class Produto extends Model
         'fabricante',
         'tarja',
         'preco',
+        'imagem',
         'status',
         'data_cadastro',
         'data_alteracao',

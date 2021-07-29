@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Produto;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class ProdutoService
 {
@@ -13,13 +14,14 @@ class ProdutoService
             'id',
             'nome',
             'preco',
+            'tarja',
             'descricao',
         ))
             ->where('status', '!=', 0)
             ->orderBy('nome', 'asc')
             ->get();
 
-        foreach ($produtos as $p){
+        foreach ($produtos as $p) {
             if ($p->preco) {
                 $real_total = substr($p->preco, 0, -2);
                 $centavos_total = str_pad(substr($p->preco, -2), 2, "0", STR_PAD_LEFT);
@@ -50,6 +52,7 @@ class ProdutoService
             'fabricante' => $request->fabricante,
             'tarja' => $request->tarja,
             'preco' => preg_replace('/\D/', '', $request->preco),
+            'imagem' => $imageName,
         ]);
 
         return $produto;
@@ -64,26 +67,50 @@ class ProdutoService
             'fabricante',
             'tarja',
             'preco',
-            'status'
+            'imagem',
         ))
             ->where('id', $id)
             ->first();
 
-            $produto->preco === 0 ? $produto->preco = 0 : $produto->preco = substr_replace($produto->preco, ',', -2, 0) ;
+        $produto->preco === 0 ? $produto->preco = 0 : $produto->preco = substr_replace($produto->preco, ',', -2, 0);
         return $produto;
     }
 
     public function update($request, $id)
     {
-        $produto = Produto::where('id', $id)->update([
-            'nome' => $request->nome,
-            'descricao' => $request->descricao,
-            'ifabricante' => $request->fabricante,
-            'itarja' => $request->tarja,
-            'preco' => preg_replace('/\D/', '', $request->preco),
-        ]);
+        if ($request->imagem) {
+            $imageName = time() . '.' . $request->imagem->extension();
+            $img = Image::make($request->imagem->path());
+            $img->resize(200, 200, function ($const) {
+                $const->aspectRatio();
+            })->save(public_path('images/produtos/')  . $imageName);
 
-        return $produto;
+            $imagem_antiga = Produto::find($id, ['imagem'])->imagem;
+            if ($imagem_antiga) {
+                $image_path = public_path('images/produtos/' . $imagem_antiga);
+                if ($image_path) {
+                    File::delete($image_path);
+                }
+            }
+
+            return Produto::where('id', $id)->update([
+                'nome' => $request->nome,
+                'preco' => preg_replace('/\D/', '', $request->preco),
+                'fabricante' => $request->fabricante,
+                'tarja' => $request->tarja,
+                'imagem' => $imageName,
+                'descricao' => $request->descricao,
+            ]);
+
+        } else {
+            return Produto::where('id', $id)->update([
+                'nome' => $request->nome,
+                'preco' => preg_replace('/\D/', '', $request->preco),
+                'fabricante' => $request->fabricante,
+                'tarja' => $request->tarja,
+                'descricao' => $request->descricao,
+            ]);
+        }
     }
 
     public function destroy($id)
@@ -94,5 +121,4 @@ class ProdutoService
 
         return $produto;
     }
-
 }

@@ -36,7 +36,7 @@
                 placeholder="Tarja">
             </div>
             <div class="form-group col-md-6">
-                <label for="logo">Imagem</label>
+                <label for="imagem">Imagem</label>
                 <input type="file" class="form-control" name="imagem" id="imagem" placeholder="Imagem" onchange="loadImagens(this)">
             </div>
             <div class="form-group col-md-6">

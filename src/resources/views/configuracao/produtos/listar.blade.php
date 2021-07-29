@@ -26,6 +26,7 @@
                     <th>#</th>
                     <th>Nome</th>
                     <th>Preço</th>
+                    <th>Tarja</th>
                     <th>Descrição</th>
                     <th>Ações</th>
                 </tr>
@@ -52,7 +53,7 @@
 <script type="text/javascript">
     const url = 'produtos.index';
 
-        const colunas = ['nome','preco' ,'descricao'];
+        const colunas = ['nome','preco', 'tarja' ,'descricao'];
 </script>
 
 @endsection('content')

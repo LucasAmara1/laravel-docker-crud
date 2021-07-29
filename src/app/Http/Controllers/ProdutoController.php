@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produto;
 use App\Services\ProdutoService;
 use Illuminate\Http\Request;
 use App\Http\Helpers\DatatablesHelper;
 use App\Http\Requests\StoreProdutoRequest;
 use App\Http\Requests\UpdateProdutoRequest;
-use App\Services\ImagemService;
-use Illuminate\Support\Facades\Session;
 
 class ProdutoController extends Controller
 {
     protected $produtos;
-    protected $imagens;
 
-    public function __construct(ProdutoService $produtos, ImagemService $imagens)
+    public function __construct(ProdutoService $produtos)
     {
         $this->produtos = $produtos;
-        $this->imagens = $imagens;
     }
 
     public function index(Request $request)
@@ -45,30 +40,27 @@ class ProdutoController extends Controller
         return redirect()->route('produtos.index')->with('mensagem', 'Cadastrado com sucesso!');
     }
 
-    public function show(Produto $produto)
+    public function show($id)
     {
-        $produto = $this->produtos->show($produto);
-        $imagem = $this->imagens->show($produto);
-
-        return view('configuracao.produtos.visualizar', compact('produto', 'imagem'));
+        $produto = $this->produtos->show($id);
+        return view('configuracao.produtos.visualizar', compact('produto'));
     }
 
-    public function edit(Produto $produto)
+    public function edit($id)
     {
-        $produto = $this->produtos->show($produto);
-        $imagem = $this->imagens->show($produto);
-        return view('configuracao.produtos.editar', compact('produto', 'imagem'));
+        $produto = $this->produtos->show($id);
+        return view('configuracao.produtos.editar', compact('produto'));
     }
 
-    public function update(UpdateProdutoRequest $request, Produto $produto)
+    public function update(UpdateProdutoRequest $request, $id)
     {
-        Session::flash('mensagem', 'Editado com sucesso!');
-        return true;
+        $this->produtos->update($request, $id);
+        return redirect()->route('produtos.index')->with('mensagem', 'Editado com sucesso!');
     }
 
-    public function destroy(Produto $produto)
+    public function destroy($id)
     {
-        $this->produtos->destroy($produto);
+        $this->produtos->destroy($id);
         return redirect()->route('produtos.index')->with('mensagem', 'Excluído com sucesso!');
     }
 }

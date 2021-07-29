@@ -20,6 +20,7 @@ class CreateProdutosTable extends Migration
             $table->text('fabricante');
             $table->text('tarja');
             $table->integer('preco');
+            $table->string('imagem', 255)->nullable();
             $table->boolean('status')->default(1)->unsigned();
             $table->timestamp('data_cadastro')->nullable();
             $table->timestamp('data_alteracao')->nullable();
