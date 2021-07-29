@@ -1,3 +1,4 @@
+
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-md-down-none">
         <img src="{{asset('icons/group.svg')}}" width="75px" alt="Logo">
@@ -29,3 +30,6 @@
         </li>
     </ul>
 </div>
+
+@include('styles.menu-style')
+

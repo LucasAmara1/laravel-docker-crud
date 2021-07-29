@@ -1,0 +1,34 @@
+<style>
+    .titulo {
+        border-radius: 5px !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0);
+    }
+
+    .conteudo {
+        margin: auto;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .btn-driip {
+        background-color: #487cb9;
+        color: #ffffff;
+    }
+
+    .btn-driip:hover {
+        color: #ffffff;
+        background-color: #3b689c;
+        text-decoration: none;
+    }
+
+    .btn-driip2 {
+        background-color: #636f83;
+        color: #ffffff;
+    }
+
+    .btn-driip2:hover {
+        color: #ffffff;
+        background-color: #586170;
+        text-decoration: none;
+    }
+</style>

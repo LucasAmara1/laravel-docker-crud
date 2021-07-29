@@ -12,7 +12,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(static function () {
 
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return redirect('/produtos');
     })->name('dashboard');
 
     Route::resource('produtos', ProdutoController::class);

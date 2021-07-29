@@ -14,7 +14,7 @@
     </div>
     <div class="btn-toolbar mb-2 float-right" role="toolbar" aria-label="Toolbar with button groups">
         <div class="pt-2">
-            <a href="{{route('produtos.create')}}" class="btn" role="button" aria-disabled="true">Novo</a>
+            <a href="{{route('produtos.create')}}" class="btn btn-driip" role="button" aria-disabled="true">Novo</a>
         </div>
     </div>
 </div>
@@ -36,25 +36,8 @@
 </div>
 
 @include('scripts.datatables-scripts')
-@include('scripts.datatables-style')
-
-<style>
-    .titulo {
-        border-radius: 5px !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0);
-    }
-
-    .conteudo {
-        margin: auto;
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-
-    .btn {
-        background-color: #636f83;
-        color: #ffffff;
-    }
-</style>
+@include('styles.datatables-style')
+@include('styles.pages-style')
 
 <style>
     td:nth-child(5) {

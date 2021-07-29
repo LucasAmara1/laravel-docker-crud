@@ -48,6 +48,14 @@
         border-color: #636f83;
     }
 
+    .page-link {
+        color: #666;
+    }
+
+    .page-link:hover {
+        color: #666;
+    }
+
     #DataTables_Table_0_processing {
         color: black !important;
         all: unset;

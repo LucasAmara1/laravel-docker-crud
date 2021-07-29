@@ -54,12 +54,12 @@
             </div>
         </div>
 
-        <a href="{{route('produtos.index')}}" class="btn btn-secondary mb-4">Voltar</a>
-        <button type="submit" class="btn btn-primary float-right mb-4" id="btn-submit">Cadastrar</button>
+        <a href="{{route('produtos.index')}}" class="btn btn-driip2 mb-4">Voltar</a>
+        <button type="submit" class="btn btn-driip float-right mb-4" id="btn-submit">Cadastrar</button>
     </form>
 </div>
 
-@include('scripts.estilo-titulo')
+@include('styles.pages-style')
 @include('scripts.image-panel')
 
 <script>
