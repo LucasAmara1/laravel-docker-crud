@@ -3,12 +3,7 @@
 
 <div class="conteudo border-0 bg-white  rounded pt-2 pb-1 ">
 
-    <div class="alert alert-danger" id="alert" style="display: none">
-        <strong>Ops!</strong> Tivemos algum problema com seus dados.
-        <ul>
-            <li id="err"></li>
-        </ul>
-    </div>
+    @include('layouts.alert-danger')
 
     <div class="card-header titulo mb-2">
         <h2>Produtos</h2>

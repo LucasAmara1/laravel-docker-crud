@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Produto;
 use App\Http\Traits\DinheiroTrait;
 use App\Http\Traits\ImagemTrait;
+use Illuminate\Http\Request;
 
 class ProdutoService
 {
@@ -32,7 +33,7 @@ class ProdutoService
         return $produtos;
     }
 
-    public function store($request)
+    public function store(Request $request)
     {
         $imagem = $this->salvarImagem($request->imagem, self::IMAGEM_PATH);
 
@@ -48,7 +49,7 @@ class ProdutoService
         return $produto;
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $produto = Produto::select(array(
             'id',
@@ -66,7 +67,7 @@ class ProdutoService
         return $produto;
     }
 
-    public function update($request, $id)
+    public function update(Request $request, int $id)
     {
         $novaImagem = $request->imagem;
         $produto = Produto::find($id, ['id', 'imagem']);
@@ -88,7 +89,7 @@ class ProdutoService
         return $produto;
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $produto = Produto::where('id', $id)->update([
             'status' => 0,

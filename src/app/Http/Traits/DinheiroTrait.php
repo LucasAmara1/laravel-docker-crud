@@ -4,7 +4,7 @@ namespace App\Http\Traits;
 
 trait DinheiroTrait
 {
-    public function formatarReal($preco)
+    public function formatarReal(String $preco):String
     {
         if ($preco) {
             $real_total = substr($preco, 0, -2);
@@ -18,7 +18,7 @@ trait DinheiroTrait
         return $preco;
     }
 
-    public function formatarNumero($preco)
+    public function formatarNumero(String $preco):String
     {
         return preg_replace('/\D/', '', $preco);
     }

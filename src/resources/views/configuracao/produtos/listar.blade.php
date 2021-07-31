@@ -2,11 +2,7 @@
 
 @section('content')
 
-@if(session('mensagem'))
-<div class="alert alert-success">
-    <p>{{session('mensagem')}}</p>
-</div>
-@endif
+@include('layouts.alert-success')
 
 <div class="conteudo border-0 bg-white rounded pt-2 pb-2">
     <div class="card-header titulo">

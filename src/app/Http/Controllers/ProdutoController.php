@@ -40,25 +40,25 @@ class ProdutoController extends Controller
         return redirect()->route('produtos.index')->with('mensagem', 'Cadastrado com sucesso!');
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $produto = $this->produtos->show($id);
         return view('configuracao.produtos.visualizar', compact('produto'));
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $produto = $this->produtos->show($id);
         return view('configuracao.produtos.editar', compact('produto'));
     }
 
-    public function update(UpdateProdutoRequest $request, $id)
+    public function update(UpdateProdutoRequest $request, int $id)
     {
         $this->produtos->update($request, $id);
         return redirect()->route('produtos.index')->with('mensagem', 'Editado com sucesso!');
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->produtos->destroy($id);
         return redirect()->route('produtos.index')->with('mensagem', 'Excluído com sucesso!');

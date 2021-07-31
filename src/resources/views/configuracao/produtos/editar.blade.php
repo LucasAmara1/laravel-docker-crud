@@ -2,12 +2,8 @@
 @section('content')
 
 <div class="conteudo border-0 bg-white  rounded pt-2 pb-1 ">
-    <div class="alert alert-danger" id="alert" style="display: none">
-        <strong>Ops!</strong> Tivemos algum problema com seus dados.
-        <ul>
-            <li id="err"></li>
-        </ul>
-    </div>
+    
+    @include('layouts.alert-danger')
 
     <div class="card-header titulo mb-2">
         <h2>Produtos</h2>
@@ -19,7 +15,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nome">Nome</label>
-                <input required value="{{$produto->nome}}" type="text" class="form-control" name="nome" id="nome"
+                <input  value="{{$produto->nome}}" type="text" class="form-control" name="nome" id="nome"
                     placeholder="Nome do Produto">
             </div>
             <div class="form-group col-md-6">
