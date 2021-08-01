@@ -5,7 +5,7 @@ Atividade para estudo de docker com Laravel.
 ## Objetivo
 
 O objetivo desse projeto é criar um ambiente PHP com banco de dados Mysql que rode uma aplicação web desenvolvida em Laravel.
-- [x]A aplicação consiste em um CRUD de produtos com as seguintes funcionalidades:
+- [x] A aplicação consiste em um CRUD de produtos com as seguintes funcionalidades:
   - [x] Listagem de produtos cadastrados;
   - [x] Visualização de produto existente;
   - [x] Adição de novo produto, com possibilidade de upload de imagem do produto;
@@ -23,7 +23,7 @@ O objetivo desse projeto é criar um ambiente PHP com banco de dados Mysql que r
 - **[src](https://github.com/LucasAmara1/laravel-docker-crud/tree/main/src)**: arquivos do projeto **Laravel (PHP)**.
   - **[docker-compose](https://github.com/LucasAmara1/laravel-docker-crud/tree/main/src/docker-compose)**: contém arquivos de configuração do **nginx** e configurações e persistência do **mysql**.
 
-## Executando o projeto
+## Como executar o projeto?
 
 ### Pré-requisitos
 * git
@@ -56,7 +56,7 @@ Entre no contêiner do PHP:
 docker exec -it laravel-docker-crud-app bash
 ```
 
-Obs: O comando anterior te levará direto para o WORKDIR do contêiner: /var/www.
+Obs: O comando anterior te levará direto para o WORKDIR do contêiner: /var/www/.
 
 Dentro do contêiner, instale as dependências:
 ```
@@ -68,7 +68,7 @@ Gere o APP_KEY executando:
 php artisan key:generate
 ```
 
-Realize a migração do banco de dados e execute os seeds para criação dos usuários para testes e configurações necessárias:
+Realize a migração do banco de dados e execute os seeds para criação dos produtos para testes e configurações necessárias:
 ```
 php artisan migrate --seed
 ```
