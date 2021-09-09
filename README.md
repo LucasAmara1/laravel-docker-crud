@@ -1,6 +1,6 @@
 # laravel-docker-crud
 
-Atividade para estudo de docker com Laravel..
+Atividade para estudo de docker com Laravel.
 
 ## Objetivo
 
